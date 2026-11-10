@@ -1,0 +1,69 @@
+:root{
+ --motion-feedback:180ms;
+ --motion-reveal:450ms;
+ --motion-sequence:700ms;
+ --motion-stagger:80ms;
+ --motion-distance:12px;
+ --motion-scale-from:.97;
+ --motion-scale-to:1;
+ --motion-ease:cubic-bezier(.22,1,.36,1)
+}
+html[data-motion-ready] [data-reveal=pending]{opacity:0;transform:translate3d(0,var(--motion-distance),0)}
+html[data-motion-ready] [data-reveal=pending][data-motion-variant=hero-title]{opacity:1}
+html[data-motion-ready] [data-reveal=pending][data-motion-variant=shell]{opacity:1;transform:none}
+html[data-motion-ready] [data-reveal=pending][data-motion-variant=card]{transform:translate3d(0,var(--motion-distance),0) scale(var(--motion-scale-from))}
+html[data-motion-ready] [data-reveal=visible]{opacity:1;transform:translate3d(0,0,0) scale(var(--motion-scale-to));transition:opacity var(--motion-reveal) var(--motion-ease),transform var(--motion-reveal) var(--motion-ease);transition-delay:calc(var(--motion-index,0)*var(--motion-stagger))}
+html[data-motion-ready] [data-motion-animating]{will-change:opacity,transform}
+.home-hero .eyebrow{position:relative;padding-left:34px}
+.home-hero .eyebrow:before{content:"";position:absolute;left:0;top:50%;width:24px;border-top:2px solid var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform var(--motion-reveal) var(--motion-ease);transition-delay:var(--motion-stagger)}
+html[data-motion-ready] .home-hero .eyebrow[data-reveal=visible]:before{transform:scaleX(1)}
+.home-service-card{position:relative;isolation:isolate}
+.home-service-card:after,.discipline-card:after,.intelligence-capabilities li:after,.coverage-list li:after{content:"";position:absolute;inset:-1px;border:1px solid var(--cyan);border-radius:inherit;pointer-events:none;opacity:0;transform:scaleX(.82);transition:opacity var(--motion-feedback) var(--motion-ease),transform var(--motion-feedback) var(--motion-ease)}
+.home-service-card:hover:after,.home-service-card:focus-within:after,.discipline-card:hover:after,.discipline-card:focus-within:after,.intelligence-capabilities li:hover:after,.intelligence-capabilities li:focus-within:after,.coverage-list li:hover:after,.coverage-list li:focus-within:after{opacity:1;transform:scaleX(1)}
+.approach-graphic li:not(:last-child):after{transform:scaleX(0);transform-origin:left;transition:transform var(--motion-sequence) var(--motion-ease);transition-delay:calc(var(--motion-index,0)*var(--motion-stagger))}
+html[data-motion-ready] .approach-graphic[data-reveal=visible] li:not(:last-child):after{transform:scaleX(1)}
+.services-menu summary span{display:inline-block;transition:transform var(--motion-feedback) var(--motion-ease)}
+.services-menu[open] summary span{transform:rotate(180deg)}
+.services-dropdown,.nav.open{transition:opacity var(--motion-feedback) var(--motion-ease),transform var(--motion-feedback) var(--motion-ease)}
+@starting-style{.services-menu[open] .services-dropdown{opacity:0;transform:translateY(-8px)}.nav.open{opacity:0;transform:translateY(-8px)}}
+.header{transition:background-color var(--motion-feedback) var(--motion-ease),border-color var(--motion-feedback) var(--motion-ease)}
+.header.is-scrolled{background:#031130f2;border-bottom-color:#185df166}
+.motion-top-sentinel{position:absolute;width:1px;height:1px;pointer-events:none}
+.button,.text-link,footer a,.sdvosb-verification,.contact-panel input,.contact-panel textarea,.contact-panel select{transition:color var(--motion-feedback) var(--motion-ease),background-color var(--motion-feedback) var(--motion-ease),border-color var(--motion-feedback) var(--motion-ease),transform var(--motion-feedback) var(--motion-ease)}
+.button:hover,.button:focus-visible{transform:translateY(-2px)}
+.contact-panel input:focus,.contact-panel textarea:focus,.contact-panel select:focus{border-color:var(--cyan)}
+.wix-success{transition:opacity var(--motion-reveal) var(--motion-ease),transform var(--motion-reveal) var(--motion-ease)}
+.pricing-card.featured{position:relative;overflow:hidden}
+.pricing-card.featured:before{content:"";position:absolute;left:0;right:0;top:0;border-top:2px solid var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform var(--motion-sequence) var(--motion-ease)}
+.pricing-card.featured[data-reveal=visible]:before{transform:scaleX(1)}
+[data-service=ai-risk-assessment] .detail-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0,var(--cyan) 50%,transparent 100%);height:2px;opacity:.65;transform:translateY(-2px);pointer-events:none;z-index:-1}
+html[data-motion-ready] [data-service=ai-risk-assessment] .detail-hero[data-reveal=visible]:after{animation:rde-scan var(--motion-sequence) var(--motion-ease) 1 both}
+@keyframes rde-scan{from{transform:translateY(0)}to{transform:translateY(540px)}}
+.federal-identifiers>div{position:relative}
+.federal-identifiers>div:after{content:"";position:absolute;inset:-1px;border:1px solid var(--cyan);border-radius:inherit;opacity:0;transform:scale(var(--motion-scale-from));transition:opacity var(--motion-reveal) var(--motion-ease),transform var(--motion-reveal) var(--motion-ease);transition-delay:calc(var(--motion-index,0)*var(--motion-stagger));pointer-events:none}
+.federal-identifiers>div[data-reveal=visible]:after{opacity:1;transform:scale(1)}
+.ai-assurance-visual{margin:30px 0 12px;padding:18px;border:1px solid #185df155;border-radius:8px;background:#080c14;overflow:hidden}
+.ai-assurance-visual svg{display:block;width:100%;height:auto;min-height:150px}
+.assurance-path{fill:none;stroke:var(--cyan);stroke-width:2;vector-effect:non-scaling-stroke}
+.assurance-node{fill:#031130;stroke:#00e5ff;stroke-width:2;transform-box:fill-box;transform-origin:center}
+.assurance-branch{fill:#185df1}
+.diagram-stage{stroke:none;fill:none}
+.diagram-panel{fill:#0b192c;stroke:#00e5ff;stroke-width:1.5}
+.diagram-icon{fill:none;stroke:#00e5ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.diagram-stage text{fill:#f0f5ff;stroke:none;text-anchor:middle;font:600 19px Inter,Arial,sans-serif}
+.diagram-stage .diagram-index{fill:#4a607a;font:12px monospace}
+.ai-assurance-visual .assurance-mobile{display:none}
+@media(max-width:600px){.ai-assurance-visual .assurance-desktop{display:none}.ai-assurance-visual .assurance-mobile{display:block;max-width:320px;margin:auto}}
+.assurance-marker circle{fill:#185df1;stroke:#00e5ff;stroke-width:2}
+.assurance-marker path{fill:none;stroke:white;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.replay-sequence{margin:0 0 30px;background:none;border:0;color:var(--cyan);font:inherit;font-weight:700;cursor:pointer;padding:8px 0}
+.replay-sequence:hover,.replay-sequence:focus-visible{color:white}
+@media(prefers-reduced-motion:reduce){html[data-motion-ready] [data-reveal]{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}.home-hero .eyebrow:before,.approach-graphic li:not(:last-child):after,.pricing-card.featured:before{transform:none!important;transition:none!important}.services-dropdown,.nav.open,.services-menu summary span,.button,.text-link,footer a,.sdvosb-verification,.contact-panel input,.contact-panel textarea,.contact-panel select{transition:none!important}.button:hover,.button:focus-visible{transform:none}.replay-sequence{display:none!important}}
+
+/* Consistent AI Compute interaction treatment across all pages. */
+:is(.home-service-card,.discipline-card,.intelligence-capabilities li,.rde-values-grid article,.deliverable,.pricing-card,.federal-capabilities>*,.contact-panel,.contact-aside,.federal-profile,.layer-map li,.intelligence-loop li){position:relative;transition:border-color var(--motion-feedback) var(--motion-ease),box-shadow var(--motion-feedback) var(--motion-ease)}
+:is(.home-service-card,.discipline-card,.intelligence-capabilities li,.rde-values-grid article,.deliverable,.pricing-card,.federal-capabilities>*,.contact-panel,.contact-aside,.federal-profile,.layer-map li,.intelligence-loop li):is(:hover,:focus-within){border-color:var(--cyan);box-shadow:0 0 0 1px #00e5ff33,0 10px 28px #00000020}
+.discipline-card,.intelligence-capabilities li{position:relative}
+.rde-team-photo img,.vciso-hero-photo img,.contact-hero-media img{transition:transform var(--motion-sequence) var(--motion-ease)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.rde-team-photo:hover img,.vciso-hero-photo:hover img,.contact-hero-media:hover img{transform:scale(1.025)}}
+@media(prefers-reduced-motion:reduce){:is(.home-service-card,.discipline-card,.intelligence-capabilities li,.rde-values-grid article,.deliverable,.pricing-card,.federal-capabilities>*,.contact-panel,.contact-aside,.federal-profile,.layer-map li,.intelligence-loop li),.rde-team-photo img,.vciso-hero-photo img,.contact-hero-media img{transition:none!important}.home-service-card:hover{transform:none}}

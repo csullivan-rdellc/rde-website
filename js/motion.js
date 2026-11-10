@@ -1,0 +1,23 @@
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const revealSelector='.home-service-card,.rde-about-copy,.rde-team-photo,.rde-mission-inner,.rde-values>.container>.eyebrow,.rde-values h2,.rde-values-grid article,.services-hero>.container>*,.federal-hero .eyebrow,.federal-hero h1,.federal-hero .federal-banner-identifiers,.federal-hero .home-actions,.contact-hero-copy,.contact-hero-media,.contact-page-grid>*,.contact-aside>*,.federal-profile,[data-motion-reveal],[data-service=ai-risk-assessment] .detail-hero,.home-section-heading,.home-about>*,.home-cta .container,.detail-hero-copy,.detail-content>*,.coverage-list li,.federal-identifiers>div,.federal-capabilities>*,.contact-grid>*,.vciso-introduction>*,.deliverable,.credentials-grid li,.pricing-card,.intelligence-capabilities li,.layer-map li,.discipline-card,.intelligence-loop li,.wix-success';
+let observer;
+function finish(node){node.dataset.reveal='visible';node.dataset.motionAnimating='';delete node.dataset.motionAnimating;const done=()=>{delete node.dataset.motionAnimating;node.removeEventListener('transitionend',done)};node.addEventListener('transitionend',done,{once:true});setTimeout(done,1000)}
+function register(root=document){
+ const nodes=[...root.querySelectorAll(revealSelector)];
+ if(root.matches?.(revealSelector))nodes.unshift(root);
+ const groups=new Map();
+ nodes.forEach(node=>{if(node.dataset.motionRegistered)return;node.dataset.motionRegistered='true';const parent=node.parentElement;const index=Math.min(groups.get(parent)||0,7);groups.set(parent,index+1);node.style.setProperty('--motion-index',String(index));if(node.matches('.home-service-card,.discipline-card,.intelligence-capabilities li,.rde-values-grid article,.deliverable,.pricing-card,.federal-capabilities>*,.contact-panel,.federal-profile'))node.dataset.motionVariant='card';if(node.matches('.home-hero h1'))node.dataset.motionVariant='hero-title';if(node.matches('.federal-identifiers>div'))node.dataset.motionVariant='shell';node.dataset.reveal=reduced.matches?'visible':'pending';if(!reduced.matches)observer.observe(node)});
+ const approach=root.querySelector?.('.approach-graphic');if(approach&&!approach.dataset.motionRegistered){approach.dataset.motionRegistered='true';approach.dataset.reveal=reduced.matches?'visible':'pending';[...approach.children].forEach((child,index)=>child.style.setProperty('--motion-index',String(Math.min(index,7))));if(!reduced.matches)observer.observe(approach)}
+ const ai=root.querySelector?.('[data-ai-assurance]');if(ai&&!ai.dataset.motionRegistered){ai.dataset.motionRegistered='true';if(reduced.matches)ai.dispatchEvent(new CustomEvent('rde:ai-reduced'));else observer.observe(ai)}
+}
+function onIntersect(entries){for(const entry of entries){const node=entry.target;if(node.dataset.motionKind==='header'){document.querySelector('.header')?.classList.toggle('is-scrolled',!entry.isIntersecting);continue}if(node.matches('[data-ai-assurance]')){if(entry.intersectionRatio>=.1&&!node.dataset.aiLoaded){node.dataset.aiLoaded='true';node.dispatchEvent(new CustomEvent('rde:ai-preload'))}if(entry.intersectionRatio>=.3){node.dispatchEvent(new CustomEvent('rde:ai-play'));observer.unobserve(node)}continue}if(entry.intersectionRatio>=.1){node.dataset.motionAnimating='true';finish(node);observer.unobserve(node)}}}
+function init(){
+ document.documentElement.dataset.motionReady='true';
+ if(!reduced.matches){observer=new IntersectionObserver(onIntersect,{threshold:[.1,.3],rootMargin:'0px 0px -10% 0px'});const main=document.querySelector('main');if(main){const sentinel=document.createElement('span');sentinel.className='motion-top-sentinel';sentinel.dataset.motionKind='header';sentinel.setAttribute('aria-hidden','true');main.prepend(sentinel);observer.observe(sentinel)}}
+ document.querySelectorAll('.home-hero .eyebrow,.home-hero h1,.home-lead,.home-actions').forEach((node,index)=>{node.dataset.motionReveal='';node.style.setProperty('--motion-index',String(index))});
+ register(document);
+ document.addEventListener('rde:content-ready',event=>register(event.detail?.root||document));
+ if(!reduced.matches)requestAnimationFrame(()=>document.querySelectorAll('.home-hero [data-reveal=pending]').forEach(finish));
+}
+reduced.addEventListener('change',()=>{if(reduced.matches){observer?.disconnect();document.querySelectorAll('[data-reveal]').forEach(finish);document.querySelectorAll('[data-ai-assurance]').forEach(node=>node.dispatchEvent(new CustomEvent('rde:ai-reduced')))}});
+init();

@@ -1,0 +1,12 @@
+main>section:first-of-type{min-height:80vh;padding-top:3rem;padding-bottom:3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+main>section:first-of-type h1{max-width:800px;margin-left:auto;margin-right:auto;font-size:clamp(2rem,5vw,3rem);line-height:1.2}
+main>section:first-of-type p{max-width:600px;margin-left:auto;margin-right:auto}
+.home-hero-grid{display:block}
+.home-actions{justify-content:center}
+.home-lead{margin-left:auto;margin-right:auto}
+.contact-hero-grid{grid-template-columns:1fr}
+.contact-hero-copy{margin:auto}
+.contact-hero-media{max-width:720px;width:100%;margin:2rem auto 0}
+
+/* Center the homepage copy block within its full-width container. */
+.home-hero .home-hero-grid>div{margin-inline:auto}

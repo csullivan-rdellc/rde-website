@@ -1,0 +1,31 @@
+/* Shared Deep Oceanic & Electric Teal theme. Load after page styles. */
+:root{color-scheme:dark;--navy:#0B192C;--ink:#F2F6FC;--teal:#00E5FF;--cyan:#00E5FF;--mint:#122A40;--line:#4A607A;--muted:#B8C9DD;--page:#031130;--surface:#0B192C;--midnight:#080C14;--primary:#185DF1}
+html,body{background:var(--page);color:var(--ink)}
+.header,footer{background:var(--midnight);color:var(--muted)}
+main,.home-section,.section,.service-section,.resources-section,.services-catalog,.about{background:var(--page);color:var(--ink)}
+.approach-section,.process,.trust-strip{background:var(--surface);color:var(--ink)}
+.home-service-card,.service-card,.resource-card,.deliverable,.pricing-card,.contact-panel,.federal-profile,.federal-identifiers>div,.intelligence-capabilities li,.discipline-card,.layer-map,.matrix-panel,.collection-message{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.layer-map li,.intelligence-loop li,.step-symbol,.service-icon,.wix-success{background:var(--mint);color:var(--ink);border-color:var(--line)}
+.home-section-heading>p,.home-service-card p,.approach-graphic p,.compute-intro,.discipline-card p,.service-summary,.service-details p,.service-details ul,.resource-summary,.resource-areas li,.section-intro>p,.section-intro>div>p:not(.eyebrow),.about p:not(.eyebrow):not(.large-copy),.phase p,.scope p,.form-help,.email-note,.trust-strip .container,.federal-identifiers dt,.company-address,footer p,footer .brand,.contact p,.hero-note,.hero-bottom,.service-index{color:var(--muted)}
+h1,h2,h3,.large-copy,.tier-price,.contact-panel label,.federal-identifiers dd{color:var(--ink)}
+.eyebrow,.text-link,.home-service-card .text-link,.service-enquiry,.service-details summary,.resource-actions .text-link,.trust-strip a,.direct-contact span,.discipline-number,.step-symbol,.service-icon,.coverage-list li:before,.credentials-grid li::marker,.home-hero h1 span,.home-hero .eyebrow,.detail-hero-copy>.eyebrow,.federal-hero .eyebrow{color:var(--cyan)}
+.text-link:hover,.home-service-card .text-link:hover,.service-enquiry:hover,.resource-actions a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px}
+.button,.layer-badge{background:var(--primary);color:#FFFFFF;border-color:transparent}
+.button:hover{background:#124BC7;color:#FFFFFF}.button:disabled{opacity:1;background:#334A66;color:#D6E1EE}
+.services-dropdown{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.services-dropdown a:hover,.services-dropdown a:focus-visible{background:var(--mint);color:var(--cyan)}
+.contact-panel input,.contact-panel textarea,.contact-panel select,.contact-panel option{background:var(--midnight);color:var(--ink);border-color:#6F88A5}
+.contact-panel input::placeholder,.contact-panel textarea::placeholder{color:#AFC1D6;opacity:1}
+.contact-panel input:focus-visible,.contact-panel textarea:focus-visible,.contact-panel select:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}
+.field-error,.form-error,.collection-error{color:#FFB4B4}.contact-panel [aria-invalid=true]{border-color:#FFB4B4}
+.silver-pill{background:var(--mint);color:var(--ink);border-color:var(--line);box-shadow:none}
+.home-cta,.contact-hero,.services-hero{background-color:var(--surface);color:var(--ink)}
+.home-cta p,.contact-hero p:last-child,.services-hero .hero-lead,.detail-hero-copy>p:last-child,.federal-hero p:not(.eyebrow){color:#D7E4F4}
+footer .sdvosb-verification{background:var(--surface);border-color:var(--line);color:var(--ink)}
+footer .sdvosb-verification:hover{background:var(--mint);border-color:var(--cyan)}
+.skip{background:var(--ink);color:var(--midnight)}
+/* Keep text readable over every frame of background video. */
+.home-hero:after{background:linear-gradient(90deg,rgba(3,17,48,.60),rgba(3,17,48,.30))}
+[data-service=ai-compute] .detail-hero-shade{background:rgba(3,17,48,.48)}
+.detail-hero-shade{background:rgba(3,17,48,.84)}
+.home-hero-grid,.detail-hero-copy{text-shadow:0 2px 5px #031130}
